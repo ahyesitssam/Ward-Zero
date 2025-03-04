@@ -7,7 +7,7 @@ using UnityEngine.UIElements;
 public class Player : MonoBehaviour
 {
 
-    public float movementSpeed = 0.1f;
+    public float movementSpeed = 0.01f;
 
     // Start is called before the first frame update
     void Start()

@@ -6,6 +6,13 @@ using UnityEngine.UIElements;
 
 public class Player : MonoBehaviour
 {
+    /*
+        To set up a interactable create a isTrigger collider2d on the object.
+        Add a second collider to make sure the player can't walk through the object
+        Then add a rigidbody and make sure to constrain it to make sure it doesn't move.  Only required if you dont want to walk through it.  
+        Add a tag to the object if needed
+     */
+
 
     public float playerspeed = 5f;
     bool inTrigger = false;
@@ -24,15 +31,19 @@ public class Player : MonoBehaviour
 
     private void move()
     {
-
+        //Records the input of the player using the Unity Default Horizontal Axis.  Allows for both controller and keyboard input.
         float horizontalInput = Input.GetAxis("Horizontal");
 
+        //Moves the player using transform translate which allows for movement in both directions.  Right is the positive direction because of Vector3.right.
         transform.Translate(Vector3.right * playerspeed * horizontalInput * Time.deltaTime);
 
+        //Records the input of the player using the Unity Default Vertical Axis.  Allows for both controller and keyboard input.
         float verticalInput = Input.GetAxis("Vertical");
 
+        //Moves the player using transform translate which allows for movement in both directions.  Up is the positive direction because of Vector3.up
         transform.Translate(Vector3.up * playerspeed * verticalInput * Time.deltaTime);
 
+        //Checks if the player is inside a trigger box and if they pressed e.  
         if (Input.GetKeyDown(KeyCode.E) && inTrigger)
         {
             Debug.Log("interaction");

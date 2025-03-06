@@ -7,7 +7,8 @@ using UnityEngine.UIElements;
 public class Player : MonoBehaviour
 {
 
-    public float movementSpeed = 0.01f;
+    public float playerspeed = 5f;
+    bool inTrigger = false;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,20 @@ public class Player : MonoBehaviour
     private void move()
     {
 
-        float up = 0.0f;
+        float horizontalInput = Input.GetAxis("Horizontal");
+
+        transform.Translate(Vector3.right * playerspeed * horizontalInput * Time.deltaTime);
+
+        float verticalInput = Input.GetAxis("Vertical");
+
+        transform.Translate(Vector3.up * playerspeed * verticalInput * Time.deltaTime);
+
+        if (Input.GetKeyDown(KeyCode.E) && inTrigger)
+        {
+            Debug.Log("interaction");
+        }
+
+        /*float up = 0.0f;
         float down = 0.0f;
         float right = 0.0f;
         float left = 0.0f;
@@ -66,8 +80,17 @@ public class Player : MonoBehaviour
         }
 
 
-        transform.position = new Vector3(transform.position.x + (right - left) * movementSpeed,transform.position.y + (up - down) * movementSpeed,0.0f);
+        transform.position = new Vector3(transform.position.x + (right - left) * movementSpeed,transform.position.y + (up - down) * movementSpeed,0.0f);*/
 
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        inTrigger = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        inTrigger = false;
+    }
 }

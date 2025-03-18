@@ -86,4 +86,9 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0f;
         gamePaused = true;
     }
+
+    public bool returnPauseStatus()
+    {
+        return gamePaused;
+    }
 }

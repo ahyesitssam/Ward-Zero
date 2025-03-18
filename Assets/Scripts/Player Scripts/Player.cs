@@ -47,9 +47,11 @@ public class Player : MonoBehaviour
         //Checks if the player is inside a trigger box and if they pressed e.  
         if (Input.GetKeyDown(KeyCode.E) && inTriggerNPC)
         {
+            //Place the UI activation for NPCs here
             Debug.Log("UI Dialouge Box Appears Now");
         } else if (Input.GetKeyDown(KeyCode.E) && inTriggerPickUp)
         {
+            //Place the UI activation and inventory addition for Items here
             Debug.Log("UI Pickup and Inventory Addition");
         }
 

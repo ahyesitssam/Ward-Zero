@@ -15,7 +15,8 @@ public class Player : MonoBehaviour
 
 
     public float playerspeed = 5f;
-    bool inTrigger = false;
+    bool inTriggerNPC = false;
+    bool inTriggerPickUp = false;
 
     // Start is called before the first frame update
     void Start()
@@ -44,9 +45,12 @@ public class Player : MonoBehaviour
         transform.Translate(Vector3.up * playerspeed * verticalInput * Time.deltaTime);
 
         //Checks if the player is inside a trigger box and if they pressed e.  
-        if (Input.GetKeyDown(KeyCode.E) && inTrigger)
+        if (Input.GetKeyDown(KeyCode.E) && inTriggerNPC)
         {
-            Debug.Log("interaction");
+            Debug.Log("UI Dialouge Box Appears Now");
+        } else if (Input.GetKeyDown(KeyCode.E) && inTriggerPickUp)
+        {
+            Debug.Log("UI Pickup and Inventory Addition");
         }
 
         /*float up = 0.0f;
@@ -97,11 +101,27 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        inTrigger = true;
+        //call a compare tag on the collison then set the appropriate bool to true.
+        if (collision.tag == "NPC") 
+        {
+            inTriggerNPC = true;
+        }
+        if (collision.tag == "PickUp")
+        {
+            inTriggerPickUp = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        inTrigger = false;
+        //call a compare tag on the collison then set the appropriate bool to false.  
+        if (collision.tag == "NPC")
+        {
+            inTriggerNPC = false;
+        }
+        if (collision.tag == "PickUp")
+        {
+            inTriggerPickUp = false;
+        }
     }
 }

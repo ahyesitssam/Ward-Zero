@@ -136,7 +136,7 @@ GameObject:
   - component: {fileID: 330264427}
   - component: {fileID: 330264426}
   m_Layer: 0
-  m_Name: Square
+  m_Name: BenchPlaceholder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

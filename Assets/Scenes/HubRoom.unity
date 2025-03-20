@@ -272,7 +272,6 @@ GameObject:
   - component: {fileID: 1280265307}
   - component: {fileID: 1280265310}
   - component: {fileID: 1280265309}
-  - component: {fileID: 1280265308}
   m_Layer: 0
   m_Name: Ground
   m_TagString: Untagged
@@ -295,22 +294,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 362368439}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1280265308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1280265306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 0
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!483693784 &1280265309
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -633,7 +616,6 @@ GameObject:
   - component: {fileID: 1878008217}
   - component: {fileID: 1878008220}
   - component: {fileID: 1878008219}
-  - component: {fileID: 1878008218}
   m_Layer: 0
   m_Name: Walls
   m_TagString: Untagged
@@ -656,22 +638,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 362368439}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1878008218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1878008216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9809bf1345abc5648af68b3a82653f08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_OverrideArea: 1
-  m_Area: 1
-  m_IgnoreFromBuild: 0
-  m_AffectedAgents: ffffffff
 --- !u!483693784 &1878008219
 TilemapRenderer:
   m_ObjectHideFlags: 0

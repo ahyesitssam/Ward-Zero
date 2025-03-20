@@ -12,20 +12,24 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] public GameObject[] locations;// 4 locations for cursor, 0 = resume, 1 = settings, 2 = main menu, 3 = exit game
     public int currentPosition = 0;// int keeps track of location
 
+    private GameManager GM;
+
     void Start()
     {
+        GM = GameObject.Find("GameManager").GetComponent<GameManager>(); //link to the GameManager script
         updatePosition();
         Resume();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))//open and close pause menu
+        if (Input.GetKeyDown(KeyCode.Escape)) //open and close pause menu
         {
             if (gamePaused)
             {
                 Resume();
             }else{
+                GM.updateGameState(2);
                 Pause();
             }
         }

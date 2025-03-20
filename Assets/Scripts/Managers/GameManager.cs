@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 {
     [Header("----Game State----")]
     [Range(0, 4)]
-    [SerializeField] private int gameState = 0;
+    public int gameState = 0;
     public const int gsMenu = 0;
     public const int gsPlaying = 1;
     public const int gsPaused = 2;
@@ -35,4 +35,11 @@ public class GameManager : MonoBehaviour
     {
         
     }
+
+    public void updateGameState(int gameState)
+    {
+
+
+    }
+
 }

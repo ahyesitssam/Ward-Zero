@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InventoryMenu : MonoBehaviour
 {
@@ -12,11 +13,14 @@ public class InventoryMenu : MonoBehaviour
     [SerializeField] public GameObject[] locations;// 7 locations for cursor, 0 is back button, 1 - 6 are slots 1 - 6
     public int currentPosition = 0;// int keeps track of location
 
-    [SerializeField] public Sprite[] itemImages;
-    public string[] itemDescriptions;
+    [SerializeField] public Sprite[] itemImages; //images of the items
+    [SerializeField] public GameObject[] itemImageLocations; //images of the items
+    private string[] itemDescriptions; //descriptions of items
+    private int[] itemInventory = new int[6]; // the 6 slots in the inventory and what they have 
+    private int itemSlot = 0; // the current slot to be filled
 
     private PauseMenu PM;
-    public bool isGamePaused = false;
+    private bool isGamePaused = false;
 
     void Start()
     {
@@ -73,13 +77,16 @@ public class InventoryMenu : MonoBehaviour
         //this if statement will be deleted later when code to pick up items off ground is addeds
         if (Input.GetKeyDown(KeyCode.M))//temp code to add items M is wood, N is stone, B is syringe
         {
-            getItem(0);
+            addItem(1);
         }else if (Input.GetKeyDown(KeyCode.N))
         {
-            getItem(1);
+            addItem(2);
         }else if (Input.GetKeyDown(KeyCode.B))
         {
-            getItem(2);
+            addItem(3);
+        }else if (Input.GetKeyDown(KeyCode.C))
+        {
+            clearInv();
         }
 
             CheckIfGameIsPaused();
@@ -116,10 +123,39 @@ public class InventoryMenu : MonoBehaviour
         }
     }
 
-    //for now, 0 is wood plank, 1 is a rock, 2 is a syringe
-    void getItem(int itemGotten)
+    //for now,0 is empty, 1 is wood plank, 2 is a rock, 3 is a syringe
+    void addItem(int itemAdded)
     {
-        //do get item code here
+        if (itemSlot != 6)//check if full
+        {
+            itemInventory[itemSlot] = itemAdded;// updates array of ints to have new item int
+            itemImageLocations[itemSlot].SetActive(true); //sets it active
+            itemSlot++; // increase inventory by 1
+        }
+        updateInventory();
+    }
+
+    void clearInv()//sets all to 0 
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            itemInventory[i] = 0;
+        }
+        itemSlot = 0;
+        updateInventory();
+    }
+
+    //updates the inventory text and images (doesnt do text for now)
+    void updateInventory()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            itemImageLocations[i].GetComponent<Image>().sprite = itemImages[itemInventory[i]]; //updates the sprites
+            if(itemInventory[i] == 0)
+            {
+                itemImageLocations[i].SetActive(false);
+            }
+        }
     }
 
     void CheckIfGameIsPaused()//checks if game is paused from the other script

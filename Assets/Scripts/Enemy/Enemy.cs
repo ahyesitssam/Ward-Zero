@@ -25,9 +25,10 @@ public class Enemy : MonoBehaviour
         agent.SetDestination(target.position);
         if (!hit) 
         {
-            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, this.transform.position.y), Vector2.left, 5.0f); //Change the Vector2.left to whatever direction we want default forward to be.
+            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, this.transform.position.y), transform.right, 5.0f); //Change the Vector2.left to whatever direction we want default forward to be.
             Debug.Log("checking");
         }
+
 
         if (hit && hit.collider.tag == "Player") 
         {
@@ -42,7 +43,7 @@ public class Enemy : MonoBehaviour
         if (!hit)
         {
             Gizmos.color = Color.red;
-            Vector2 direction = Vector2.left * 5;
+            Vector2 direction = transform.right * 5;
             Gizmos.DrawRay(this.transform.position, direction);
         }
     }

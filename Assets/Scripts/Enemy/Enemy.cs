@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] Transform target;
     NavMeshAgent agent;
     RaycastHit2D hit;
+    
 
     // Start is called before the first frame update
     void Start()
@@ -17,16 +18,18 @@ public class Enemy : MonoBehaviour
         agent.updateRotation = false; //May need to be changed later
         agent.updateUpAxis = false;
         agent.speed = 0.0f;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         agent.SetDestination(target.position);
         if (!hit) 
         {
             hit = Physics2D.Raycast(new Vector2(this.transform.position.x, this.transform.position.y), transform.right, 5.0f); //Change the Vector2.left to whatever direction we want default forward to be.
-            Debug.Log("checking");
+            //Debug.Log("checking");
         }
 
 
@@ -47,4 +50,6 @@ public class Enemy : MonoBehaviour
             Gizmos.DrawRay(this.transform.position, direction);
         }
     }
+
+    
 }

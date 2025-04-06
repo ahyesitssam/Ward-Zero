@@ -52,7 +52,12 @@ public class Player : MonoBehaviour
         } else if (Input.GetKeyDown(KeyCode.E) && inTriggerPickUp)
         {
             //Place the UI activation and inventory addition for Items here
-            Debug.Log("UI Pickup and Inventory Addition");
+            //Debug.Log("UI Pickup and Inventory Addition");
+            if(currPickUp != null)
+            {
+                currPickUp.GetComponent<PickUp>().addToInventory();
+            }
+
         }
 
         /*float up = 0.0f;
@@ -101,6 +106,8 @@ public class Player : MonoBehaviour
 
     }
 
+    private GameObject currPickUp = null;
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //call a compare tag on the collison then set the appropriate bool to true.
@@ -111,6 +118,7 @@ public class Player : MonoBehaviour
         if (collision.tag == "PickUp")
         {
             inTriggerPickUp = true;
+            currPickUp = collision.gameObject;
         }
     }
 
@@ -124,6 +132,7 @@ public class Player : MonoBehaviour
         if (collision.tag == "PickUp")
         {
             inTriggerPickUp = false;
+            currPickUp = null;
         }
     }
 }

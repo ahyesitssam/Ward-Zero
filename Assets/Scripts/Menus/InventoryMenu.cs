@@ -24,7 +24,7 @@ public class InventoryMenu : MonoBehaviour
 
     void Start()
     {
-        updatePosition();
+        UpdatePosition();
         Resume();
         PM = GameObject.Find("Canvas").GetComponent<PauseMenu>();
     }
@@ -53,7 +53,7 @@ public class InventoryMenu : MonoBehaviour
             {
                 currentPosition++;
             }
-            updatePosition();
+            UpdatePosition();
         }
         else if (Input.GetKeyDown(KeyCode.A) && inventoryOpened && !isGamePaused)
         {
@@ -65,7 +65,7 @@ public class InventoryMenu : MonoBehaviour
             {
                 currentPosition--;
             }
-            updatePosition();
+            UpdatePosition();
         }
 
 
@@ -75,21 +75,22 @@ public class InventoryMenu : MonoBehaviour
         }
 
         //this if statement will be deleted later when code to pick up items off ground is addeds
-        if (Input.GetKeyDown(KeyCode.M))//temp code to add items M is wood, N is stone, B is syringe
+        /*if (Input.GetKeyDown(KeyCode.M))//temp code to add items M is wood, N is stone, B is syringe
         {
-            addItem(1);
+            AddItem(1);
         }else if (Input.GetKeyDown(KeyCode.N))
         {
-            addItem(2);
+            AddItem(2);
         }else if (Input.GetKeyDown(KeyCode.B))
         {
-            addItem(3);
-        }else if (Input.GetKeyDown(KeyCode.C))
+            AddItem(3);
+        }else */
+        if (Input.GetKeyDown(KeyCode.C))// for testing, to be removed later
         {
-            clearInv();
+            ClearInv();
         }
 
-            CheckIfGameIsPaused();
+        CheckIfGameIsPaused();
     }
 
     void Resume()
@@ -98,7 +99,7 @@ public class InventoryMenu : MonoBehaviour
         Time.timeScale = 1f;
         inventoryOpened = false;
         currentPosition = 0;
-        updatePosition();
+        UpdatePosition();
     }
 
     void OpenMenu()
@@ -108,7 +109,7 @@ public class InventoryMenu : MonoBehaviour
         inventoryOpened = true;
     }
 
-    void updatePosition()// updates the cursor to the new position when moved
+    void UpdatePosition()// updates the cursor to the new position when moved
     {
         cursor.transform.position = locations[currentPosition].transform.position;
         if (currentPosition == 0)
@@ -123,8 +124,13 @@ public class InventoryMenu : MonoBehaviour
         }
     }
 
+    public bool IsInventoryFull() //return true if inventory is full, mainly used by other scripts
+    {
+        return itemSlot == 6;
+    }
+
     //for now,0 is empty, 1 is wood plank, 2 is a rock, 3 is a syringe
-    void addItem(int itemAdded)
+    public void AddItem(int itemAdded)
     {
         if (itemSlot != 6)//check if full
         {
@@ -132,21 +138,21 @@ public class InventoryMenu : MonoBehaviour
             itemImageLocations[itemSlot].SetActive(true); //sets it active
             itemSlot++; // increase inventory by 1
         }
-        updateInventory();
+        UpdateInventory();
     }
 
-    void clearInv()//sets all to 0 
+    void ClearInv()//sets all to 0 
     {
         for (int i = 0; i < 6; i++)
         {
             itemInventory[i] = 0;
         }
         itemSlot = 0;
-        updateInventory();
+        UpdateInventory();
     }
 
     //updates the inventory text and images (doesnt do text for now)
-    void updateInventory()
+    void UpdateInventory()
     {
         for (int i = 0; i < 6; i++)
         {

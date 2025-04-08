@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.AI;
+using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
 
 public class navPatrol : MonoBehaviour
 {
@@ -15,14 +16,22 @@ public class navPatrol : MonoBehaviour
     Vector2 direction1 = new Vector2(-1, 1);
     Vector2 direction2 = new Vector2(0, 1.3f);
     Rigidbody2D thisRigid;
-    Vector2 currentPos;
-    Vector2 prevPos;
+    Vector3 currentPos;
+    //Vector2 prevPos;
+    Vector3 dir;
+    Vector2 rotation;
+    
+
+
+
 
 
     // Start is called before the first frame update
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
+        
+
 
         // Disabling auto-braking allows for continuous movement
         // between points (ie, the agent doesn't slow down as it
@@ -54,51 +63,78 @@ public class navPatrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currentPos = transform.position;
-        StartCoroutine(checkPrevPos());
 
+        currentPos = transform.position;
+        dir = agent.destination - currentPos;
         // Choose the next destination point when the agent gets
         // close to the current one.
         if (agent.remainingDistance < 0.5f)
             GotoNextPoint();
 
-        if ((prevPos.x - currentPos.x) > 0) 
-        {
-            Debug.Log("direction?");
-        }
+       
 
         if (!hit)
         {
-            hit = Physics2D.Raycast(this.transform.position, direction); //Change the Vector2.left to whatever direction we want default forward to be.
-            hit = Physics2D.Raycast(this.transform.position, direction1);
-            hit = Physics2D.Raycast(this.transform.position, direction2);
+            hit = Physics2D.Raycast(this.transform.position, direction * rotation); //Change the Vector2.left to whatever direction we want default forward to be.
+            hit = Physics2D.Raycast(this.transform.position, direction1 * rotation);
+            hit = Physics2D.Raycast(this.transform.position, direction2 * rotation );
             //Debug.Log("checking");
         }
 
-
+        if (dir.x > 1)
+            direction = new Vector2(5, -5);
+        else if (dir.x < -1)
+            rotation = new Vector2(-5, 5);
+        else if (dir.y > 1)
+            rotation = new Vector2(5, 5);
+        else if (dir.y < -1)
+            rotation = new Vector2(-5, -5);
+        else
+            Debug.Log("nothing");
         
+
+        Debug.Log(dir);
+
         //Physics2D.Raycast(this.transform.position, new Vector2(1,1), 5f);
     }
 
     void OnDrawGizmosSelected()
     {
-        // Draws a 5 unit long red line in front of the object
-        
-        
+        currentPos = transform.position;
+        dir = agent.destination - currentPos;
+
+
         Gizmos.color = Color.red;
-        Vector2 direction = new Vector2(1, 1);
-        Vector2 direction1 = new Vector2(-1, 1);
-        Vector2 direction2 = new Vector2(0, 1.3f);
-        Gizmos.DrawRay(this.transform.position, direction);
-        Gizmos.DrawRay(this.transform.position, direction1);
-        Gizmos.DrawRay(this.transform.position, direction2);
+        Vector2 left = new Vector2(1, 1);
+        Vector2 right = new Vector2(-1, 1);
+        Vector2 middle = new Vector2(0, 1.3f);
 
+        if (dir.x > 1)
+        {
+            left = new Vector2(5, 5);
+            right = new Vector2(5, -5);
+        }
+        else if (dir.x < -1)
+        {
+            left = new Vector2(-5, -5);
+            right = new Vector2(-5, 5);
+        }
+        else if (dir.y > 1)
+        {
+            left = new Vector2(-5, 5);
+            right = new Vector2(5, 5);
+        }
+        else if (dir.y < -1)
+        {
+            left = new Vector2(5, -5);
+            right = new Vector2(-5, -5);
+        }
+        else
+            Debug.Log("nothing");
+        Gizmos.DrawRay(this.transform.position, left);
+        Gizmos.DrawRay(this.transform.position, right);
+        Gizmos.DrawRay(this.transform.position, middle);
 
-    }
-    IEnumerator checkPrevPos()
-    {
-        prevPos = currentPos;
-        Debug.Log(prevPos.x - currentPos.x);
-        yield return new WaitForSeconds(0.5f);
+        
     }
 }

@@ -52,3 +52,6 @@ TagManager:
   - name: Enemies
     uniqueID: 1734668967
     locked: 0
+  - name: Resources
+    uniqueID: 1626640959
+    locked: 0

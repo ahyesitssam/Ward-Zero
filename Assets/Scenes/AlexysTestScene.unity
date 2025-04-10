@@ -1182,6 +1182,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 1002993521645719502, guid: 45ba27f7b57c1984dba30eec1bc83981, type: 3}
+      propertyPath: m_FontData.m_Font
+      value: 
+      objectReference: {fileID: 12800000, guid: 2daa342b55ac6fb4b95704536fd28d07, type: 3}
     - target: {fileID: 4101223887568106263, guid: 45ba27f7b57c1984dba30eec1bc83981, type: 3}
       propertyPath: m_Pivot.x
       value: 0

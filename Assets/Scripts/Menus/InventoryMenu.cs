@@ -15,7 +15,8 @@ public class InventoryMenu : MonoBehaviour
 
     [SerializeField] public Sprite[] itemImages; //images of the items
     [SerializeField] public GameObject[] itemImageLocations; //images of the items
-    private string[] itemDescriptions; //descriptions of items
+    private string[] itemDescriptions = new string[7]; //descriptions of items
+    [SerializeField] private GameObject itemDescriptionBox;
     private int[] itemInventory = new int[6]; // the 6 slots in the inventory and what they have 
     private int itemSlot = 0; // the current slot to be filled
 
@@ -27,6 +28,19 @@ public class InventoryMenu : MonoBehaviour
         UpdatePosition();
         Resume();
         PM = GameObject.Find("Canvas").GetComponent<PauseMenu>();
+        setItemDescriptions();
+    }
+
+    private void setItemDescriptions()
+    {
+        itemDescriptions[0] = "";
+        itemDescriptions[1] = "Wood";
+        itemDescriptions[2] = "Rock";
+        itemDescriptions[3] = "Syringe";
+        itemDescriptions[4] = "4th Item";
+        itemDescriptions[5] = "5th Item";
+        itemDescriptions[6] = "6th Item";
+
     }
 
     void Update()
@@ -91,6 +105,7 @@ public class InventoryMenu : MonoBehaviour
         }
 
         CheckIfGameIsPaused();
+        UpdateInventory();
     }
 
     void Resume()
@@ -156,16 +171,33 @@ public class InventoryMenu : MonoBehaviour
     {
         for (int i = 0; i < 6; i++)
         {
-            itemImageLocations[i].GetComponent<Image>().sprite = itemImages[itemInventory[i]]; //updates the sprites
+            itemImageLocations[i].GetComponent<Image>().sprite = itemImages[itemInventory[i]]; //updates the sprite
+            
             if(itemInventory[i] == 0)
             {
                 itemImageLocations[i].SetActive(false);
             }
         }
+
+        int currDesc;
+        if(currentPosition == 0)
+        {
+            currDesc = 0;
+        }
+        else
+        {
+            currDesc = itemInventory[currentPosition - 1];
+        }
+        itemDescriptionBox.GetComponent<Text>().text = itemDescriptions[currDesc]; // this isnt correct rn
     }
 
     void CheckIfGameIsPaused()//checks if game is paused from the other script
     {
         isGamePaused = PM.returnPauseStatus();
+    }
+
+    public int checkForItem(int item) // eventually used from other methods to check for having a certain item.
+    {
+        return 0;
     }
 }

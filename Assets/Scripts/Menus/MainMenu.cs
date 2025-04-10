@@ -9,7 +9,6 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject mainImage;
     [SerializeField] public Sprite[] imageArray;
 
-    // Update is called once per frame WHAT!?!?!?! IT IS!?!?!?!?! NO WAY!!!!!!!!!
     void Update()
     {
         UpdateImage();
@@ -30,7 +29,7 @@ public class MainMenu : MonoBehaviour
         }
     }
 
-    private void swapState()//dumb code :(
+    private void swapState()
     {
         if(currentState == 1)
         {

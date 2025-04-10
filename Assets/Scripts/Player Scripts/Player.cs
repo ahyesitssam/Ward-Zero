@@ -120,6 +120,11 @@ public class Player : MonoBehaviour
             inTriggerPickUp = true;
             currPickUp = collision.gameObject;
         }
+        if (collision.tag == "PatrolEnemy") 
+        {
+            navPatrol navPatrol = collision.gameObject.GetComponent<navPatrol>();
+            navPatrol.foundPlayer();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

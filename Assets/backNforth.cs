@@ -14,8 +14,8 @@ public class backNforth : MonoBehaviour
     void Start()
     {
 
-        min = transform.position.x;
-        max = transform.position.x + 3;
+        min = transform.position.y;
+        max = transform.position.y + 3;
         
     }
 
@@ -33,10 +33,17 @@ public class backNforth : MonoBehaviour
             //agent.SetDestination(new Vector3(transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min, transform.position.z));
         }
 
-        if (hit && hit.collider.tag == "Player" && hit.collider.tag != null && !enemySummoned) 
+
+
+        if (hit && hit.collider.tag == "Player" && hit.collider.tag != null && !enemySummoned)
         {
             Debug.Log("summonEnemy");
             enemySummoned = true;
+        }
+        else 
+        {
+            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min), transform.right, 5.0f);
+            transform.position = new Vector3(transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min, transform.position.z);
         }
 
     }

@@ -102,6 +102,8 @@ MonoBehaviour:
   points:
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   target: {fileID: 0}
 --- !u!58 &2995050289513449671
 CircleCollider2D:

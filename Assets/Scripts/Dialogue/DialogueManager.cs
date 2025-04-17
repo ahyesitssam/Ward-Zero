@@ -1,9 +1,9 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Dialogue : MonoBehaviour
+public class DialogueManager : MonoBehaviour
 {
     [Header("Content")]
     public string[] speech;
@@ -16,17 +16,18 @@ public class Dialogue : MonoBehaviour
     public float nextSpeechSpeed;
 
     [Header("Requirements")]
-    public Text speechBox;
-    public Text characterBox;
-    public Image dialoguePanel;
-    public bool playOnStart;
+    [SerializeField] private Text speechBox;
+    [SerializeField] private Text characterBox;
+    [SerializeField] private Image dialoguePanel;
+    [SerializeField] private bool playOnStart;
 
     private void Start()
     {
         if (playOnStart == true)
         {
             StartCoroutine(Talk(speech));
-        } else if (playOnStart == false)
+        }
+        else if (playOnStart == false)
         {
             characterBox.enabled = false;
             speechBox.enabled = false;

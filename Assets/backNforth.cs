@@ -10,6 +10,13 @@ public class backNforth : MonoBehaviour
     [SerializeField] float max = 3f;
     RaycastHit2D hit;
     bool enemySummoned = false;
+    [SerializeField] GameObject enemyToSpawn;
+
+    [SerializeField] bool left = false;
+    [SerializeField] bool right = false;
+    [SerializeField] bool up = false;
+    [SerializeField] bool down = false;
+
     // Use this for initialization
     void Start()
     {
@@ -23,14 +30,22 @@ public class backNforth : MonoBehaviour
     void Update()
     {
 
-
-        
-
-        if (!hit)
+        if (!hit && right)
         {
-            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min), transform.right , 5.0f); //Change the Vector2.left to whatever direction we want default forward to be.
-            transform.position = new Vector3(transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min, transform.position.z);
-            //agent.SetDestination(new Vector3(transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min, transform.position.z));
+            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min), transform.right, 5.0f); //Change the Vector2.left to whatever direction we want default forward to be.
+            //Debug.Log("checking");
+        }
+        else if (!hit && left)
+        {
+            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min), -transform.right, 5.0f);
+        }
+        else if (!hit && up)
+        {
+            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min), transform.up, 5.0f);
+        }
+        else if (!hit && down)
+        {
+            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min), -transform.up, 5.0f);
         }
 
 
@@ -42,7 +57,23 @@ public class backNforth : MonoBehaviour
         }
         else 
         {
-            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min), transform.right, 5.0f);
+            if (right)
+        {
+            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min), transform.right, 5.0f); //Change the Vector2.left to whatever direction we want default forward to be.
+            //Debug.Log("checking");
+        }
+        else if (left)
+        {
+            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min), -transform.right, 5.0f);
+        }
+        else if (up)
+        {
+            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min), transform.up, 5.0f);
+        }
+        else if (down)
+        {
+            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min), -transform.up, 5.0f);
+        }
             transform.position = new Vector3(transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min, transform.position.z);
         }
 

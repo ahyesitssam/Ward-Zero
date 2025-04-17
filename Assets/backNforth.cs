@@ -52,7 +52,9 @@ public class backNforth : MonoBehaviour
 
         if (hit && hit.collider.tag == "Player" && hit.collider.tag != null && !enemySummoned)
         {
-            Debug.Log("summonEnemy");
+            Instantiate(enemyToSpawn, transform.position, Quaternion.identity);
+            Enemy enemyScript = enemyToSpawn.GetComponent<Enemy>();
+            //enemyScript.spawned = true;
             enemySummoned = true;
         }
         else 

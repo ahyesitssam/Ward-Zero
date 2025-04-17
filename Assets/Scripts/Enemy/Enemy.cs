@@ -6,19 +6,24 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
 
-    [SerializeField] Transform target;
+    Transform target;
     NavMeshAgent agent;
     RaycastHit2D hit;
+    GameObject player;
 
     [SerializeField] bool left = false;
     [SerializeField] bool right = false;
     [SerializeField] bool up = false;
     [SerializeField] bool down = false;
+
+    //public bool spawned = false;
     
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
+        target = player.GetComponent<Transform>();  
         agent = GetComponent<NavMeshAgent>();
         agent.updateRotation = false; //May need to be changed later
         agent.updateUpAxis = false;

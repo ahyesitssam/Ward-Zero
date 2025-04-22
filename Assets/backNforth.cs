@@ -60,23 +60,23 @@ public class backNforth : MonoBehaviour
         else 
         {
             if (right)
-        {
-            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min), transform.right, 5.0f); //Change the Vector2.left to whatever direction we want default forward to be.
-            //Debug.Log("checking");
-        }
-        else if (left)
-        {
-            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min), -transform.right, 5.0f);
-        }
-        else if (up)
-        {
-            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min), transform.up, 5.0f);
-        }
-        else if (down)
-        {
-            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min), -transform.up, 5.0f);
-        }
-            transform.position = new Vector3(transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min, transform.position.z);
+            {
+                hit = Physics2D.Raycast(new Vector2(this.transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min), transform.right, 5.0f); //Change the Vector2.left to whatever direction we want default forward to be.
+                //Debug.Log("checking");
+            }
+            else if (left)
+            {
+                hit = Physics2D.Raycast(new Vector2(this.transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min), -transform.right, 5.0f);
+            }
+            else if (up)
+            {
+                hit = Physics2D.Raycast(new Vector2(this.transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min), transform.up, 5.0f);
+            }
+            else if (down)
+            {
+                hit = Physics2D.Raycast(new Vector2(this.transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min), -transform.up, 5.0f);
+            }
+                transform.position = new Vector3(transform.position.x, Mathf.PingPong(Time.time * 2, max - min) + min, transform.position.z);
         }
 
     }

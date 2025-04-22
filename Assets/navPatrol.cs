@@ -92,7 +92,7 @@ public class navPatrol : MonoBehaviour
                 checkingLeft = true;
             }*/
         }
-            if (agent.remainingDistance < 0.5f && !seePlayer)
+        if (agent.remainingDistance < 0.5f && !seePlayer)
         {
             GotoNextPoint();
         }

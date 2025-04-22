@@ -15,7 +15,7 @@ NavMeshProjectSettings:
     cost: 1
   - name: Patrol
     cost: 1
-  - name: 
+  - name: Maw
     cost: 1
   - name: 
     cost: 1

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
 using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
 using static TMPro.SpriteAssetUtilities.TexturePacker_JsonArray;
@@ -23,8 +25,9 @@ public class navPatrol : MonoBehaviour
     Vector2 rotation;
     bool seePlayer = false;
     [SerializeField] private Transform target;
-    
 
+    NavMeshPath path;
+    bool checkingLeft;
 
 
 
@@ -46,6 +49,7 @@ public class navPatrol : MonoBehaviour
 
         GotoNextPoint();
         currentPos = transform.position;
+        path = new NavMeshPath();
     }
 
     void GotoNextPoint()
@@ -73,72 +77,26 @@ public class navPatrol : MonoBehaviour
         dir = agent.destination - currentPos;
         // Choose the next destination point when the agent gets
         // close to the current one.
-        
-        if (seePlayer) 
+
+        if (agent.CalculatePath(target.position, path) && path.status == NavMeshPathStatus.PathComplete && seePlayer)
         {
             agent.SetDestination(target.position);
         }
-        if (agent.remainingDistance < 0.5f && !seePlayer)
+        else
+        {
+            //agent.destination = agent.transform.position;
+            seePlayer = false;
+            /*if (!checkingLeft) 
+            {
+                StartCoroutine(checkLeft());
+                checkingLeft = true;
+            }*/
+        }
+            if (agent.remainingDistance < 0.5f && !seePlayer)
         {
             GotoNextPoint();
         }
 
-
-
-
-        /*Debug.Log(hit.collider);
-
-        if (hit && hit.collider.tag == "Player")
-            agent.destination = hit.transform.position;
-
-        if (dir.x > 1)
-        {
-            left = new Vector2(10, 10);
-            right = new Vector2(10, -10);
-            middle = new Vector2(10, 0);
-        }
-        else if (dir.x < -1)
-        {
-            left = new Vector2(-10, -10);
-            right = new Vector2(-10, 10);
-            middle = new Vector2(-10, 0);
-        }
-        else if (dir.y > 1)
-        {
-            left = new Vector2(-10, 10);
-            right = new Vector2(10, 10);
-            middle = new Vector2(0, 10f);
-        }
-        else if (dir.y < -1)
-        {
-            left = new Vector2(10, -10);
-            right = new Vector2(-10, -10);
-            middle = new Vector2(0, -10f);
-        }
-        else
-            Debug.Log("nothing");
-
-
-        if (!hit)
-        {
-            hit = Physics2D.Raycast(this.transform.position, left); //Change the Vector2.left to whatever direction we want default forward to be.
-            hit = Physics2D.Raycast(this.transform.position, right);
-            hit = Physics2D.Raycast(this.transform.position, middle);
-            //Debug.Log("checking");
-        }
-
-        if (hit && hit.collider.tag == "Player")
-        {
-            
-            Debug.Log("Found");
-        }*/
-
-
-
-
-        //Debug.Log(dir);
-
-        //Physics2D.Raycast(this.transform.position, new Vector2(1,1), 5f);
     }
 
 
@@ -148,5 +106,13 @@ public class navPatrol : MonoBehaviour
         Debug.Log("foundplayer");
     }
 
+    IEnumerator checkLeft() 
+    {
+        yield return new WaitForSeconds(3);
+        if(!(agent.CalculatePath(target.position, path) && path.status == NavMeshPathStatus.PathComplete) && seePlayer)
+        {
+            Destroy(this.gameObject);
+        }
+    }
     
 }

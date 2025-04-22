@@ -8,6 +8,7 @@ TagManager:
   - PickUp
   - Walls
   - PatrolEnemy
+  - sceneChanger
   layers:
   - Default
   - TransparentFX

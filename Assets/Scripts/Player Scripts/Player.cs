@@ -125,6 +125,11 @@ public class Player : MonoBehaviour
             navPatrol navPatrol = collision.gameObject.GetComponent<navPatrol>();
             navPatrol.foundPlayer();
         }
+        if (collision.tag == "sceneChanger") 
+        {
+            sceneChanger sceneChanger = collision.gameObject.GetComponent<sceneChanger>();
+            sceneChanger.changeScene();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

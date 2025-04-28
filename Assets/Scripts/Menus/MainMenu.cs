@@ -5,8 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public int currentState = 0; // 0 is no selection, 1 is new game, 2 is quit
-    [SerializeField] public GameObject mainImage;
+    public int currentState = 0; // 0 is no selection, 1 is new game, 2 is settings, 3 is quit
+    [SerializeField] public GameObject newGame;
+    [SerializeField] public GameObject settings;
+    [SerializeField] public GameObject quitGame;
     [SerializeField] public Sprite[] imageArray;
 
     void Update()
@@ -16,42 +18,83 @@ public class MainMenu : MonoBehaviour
         {
             DoButton(); // presses the button
         }
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow)) 
+        
+        if (Input.GetKeyDown(KeyCode.W)  || Input.GetKeyDown(KeyCode.UpArrow)) 
         {
-            if (currentState == 0)//first button push
+            if (!firstInput())
             {
-                currentState = 1;
+                currentState--;
             }
-            else
-            {
-                swapState();
-            }
+            checkIfInBounds();
         }
+        else if(Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S))
+        {
+            if (!firstInput())
+            {
+                currentState++;
+            }
+            checkIfInBounds();
+        }
+
     }
 
-    private void swapState()
+    private void checkIfInBounds()
     {
-        if(currentState == 1)
-        {
-            currentState = 2;
-        }else if(currentState == 2)
+        if (currentState >= 4)
         {
             currentState = 1;
         }
-
+        if (currentState <= 0)
+        {
+            currentState = 3;
+        }
     }
+
+    private bool firstInput()
+    {
+        if (currentState == 0)//first button push
+        {
+            currentState = 1;
+            return true;
+        }
+        return false;
+    }
+
 
     private void UpdateImage()
     {
-        mainImage.GetComponent<SpriteRenderer>().sprite = imageArray[currentState]; //updates the sprites
+        
+        if (currentState == 1)
+        {
+            newGame.GetComponent<SpriteRenderer>().sprite = imageArray[1];
+            settings.GetComponent<SpriteRenderer>().sprite = imageArray[2];
+            quitGame.GetComponent<SpriteRenderer>().sprite = imageArray[4];
+        }
+        else if (currentState == 2)
+        {
+            newGame.GetComponent<SpriteRenderer>().sprite = imageArray[0];
+            settings.GetComponent<SpriteRenderer>().sprite = imageArray[3];
+            quitGame.GetComponent<SpriteRenderer>().sprite = imageArray[4];
+        }
+        else if (currentState == 3)
+        {
+            newGame.GetComponent<SpriteRenderer>().sprite = imageArray[0];
+            settings.GetComponent<SpriteRenderer>().sprite = imageArray[2];
+            quitGame.GetComponent<SpriteRenderer>().sprite = imageArray[5];
+        }
     }
 
     private void DoButton()
     {
-        if(currentState == 1)
+        if (currentState == 1)
         {
             StartGame();
-        }else if(currentState == 2)
+        }
+        else if (currentState == 2)
+        {
+            //settings menu stuff here
+        }
+        else if (currentState == 3)
         {
             EndGame();
         }
@@ -65,6 +108,6 @@ public class MainMenu : MonoBehaviour
     private void EndGame()
     {
         Application.Quit();
-        mainImage.SetActive(false);
+        quitGame.SetActive(false);
     }
 }

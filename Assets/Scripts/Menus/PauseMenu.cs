@@ -18,6 +18,7 @@ public class PauseMenu : MonoBehaviour
     {
         GM = GameObject.Find("GameManager").GetComponent<GameManager>(); //link to the GameManager script
         updatePosition();
+        DontDestroyOnLoad(this.gameObject);
         Resume();
     }
 

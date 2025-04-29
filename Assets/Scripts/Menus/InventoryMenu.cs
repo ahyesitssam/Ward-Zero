@@ -29,6 +29,7 @@ public class InventoryMenu : MonoBehaviour
         Resume();
         PM = GameObject.Find("Canvas").GetComponent<PauseMenu>();
         setItemDescriptions();
+        DontDestroyOnLoad(this.gameObject);
     }
 
     private void setItemDescriptions()

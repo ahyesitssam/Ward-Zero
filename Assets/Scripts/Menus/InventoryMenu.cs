@@ -33,14 +33,31 @@ public class InventoryMenu : MonoBehaviour
 
     private void setItemDescriptions()
     {
-        itemDescriptions[0] = "";
+        itemDescriptions[0] = ""; //blank slot
         itemDescriptions[1] = "Wood";
         itemDescriptions[2] = "Rock";
         itemDescriptions[3] = "Syringe";
-        itemDescriptions[4] = "4th Item";
-        itemDescriptions[5] = "5th Item";
-        itemDescriptions[6] = "6th Item";
+        itemDescriptions[4] = "Breathing Mask";
+        itemDescriptions[5] = "Pills";
+        itemDescriptions[6] = "Oxygen Tank";
 
+    }
+
+    //to use add this at the top of the file:
+    //private InventoryMenu IM;
+    //then add this in the start():
+    //IM = GameObject.Find("Canvas").GetComponent<InventoryMenu>();
+    //then call IM.checkForItem(id) with the item id and it will return true if it has it and false otherwise
+    public bool checkForItem(int item)
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            if (itemInventory[i] == item)
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     void Update()
@@ -196,8 +213,4 @@ public class InventoryMenu : MonoBehaviour
         isGamePaused = PM.returnPauseStatus();
     }
 
-    public int checkForItem(int item) // eventually used from other methods to check for having a certain item.
-    {
-        return 0;
-    }
 }

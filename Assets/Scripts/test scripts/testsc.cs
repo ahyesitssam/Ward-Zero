@@ -14,6 +14,13 @@ public class testsc : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(IM.checkForItem(1));
+        if (Input.GetKeyDown(KeyCode.K)){
+            Debug.Log("Wood:" + IM.checkForItem(1));
+            Debug.Log("Rock:" + IM.checkForItem(2));
+            Debug.Log("Syr:" + IM.checkForItem(3));
+            Debug.Log("Mask:" + IM.checkForItem(4));
+            Debug.Log("Pills:" + IM.checkForItem(5));
+            Debug.Log("Tank:" + IM.checkForItem(6));
+        }
     }
 }

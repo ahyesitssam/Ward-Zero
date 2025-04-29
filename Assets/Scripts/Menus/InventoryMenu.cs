@@ -50,7 +50,7 @@ public class InventoryMenu : MonoBehaviour
     //then call IM.checkForItem(id) with the item id and it will return true if it has it and false otherwise
     public bool checkForItem(int item)
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 6; i++)
         {
             if (itemInventory[i] == item)
             {

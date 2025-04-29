@@ -130,6 +130,11 @@ public class Player : MonoBehaviour
             sceneChanger sceneChanger = collision.gameObject.GetComponent<sceneChanger>();
             sceneChanger.changeScene();
         }
+
+        if (collision.tag == "Enemy" || collision.tag == "Projectile") 
+        {
+            Debug.Log("Kill/Damage Player" + collision.name);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -143,6 +148,15 @@ public class Player : MonoBehaviour
         {
             inTriggerPickUp = false;
             currPickUp = null;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log("Collision");
+        if (collision.collider.tag == "Enemy" || collision.collider.tag == "Projectile" || collision.collider.tag == "PatrolEnemy") 
+        {
+            Debug.Log("Kill/Damage Player" + collision.collider.name);
         }
     }
 }

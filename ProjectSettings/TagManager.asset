@@ -9,6 +9,8 @@ TagManager:
   - Walls
   - PatrolEnemy
   - sceneChanger
+  - Projectile
+  - Enemy
   layers:
   - Default
   - TransparentFX

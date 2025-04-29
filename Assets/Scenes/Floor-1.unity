@@ -2306,11 +2306,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3484153498820435652, guid: d4b4dce215190b846a6bde9e5c1226a8, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -32.1
+      value: -20.79
       objectReference: {fileID: 0}
     - target: {fileID: 3484153498820435652, guid: d4b4dce215190b846a6bde9e5c1226a8, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 27.1
+      value: 4.94
       objectReference: {fileID: 0}
     - target: {fileID: 3484153498820435652, guid: d4b4dce215190b846a6bde9e5c1226a8, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5398,6 +5398,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 284541037}
+    - target: {fileID: 5930956698814743297, guid: 83fa459b17916e64a91d264cee09d6b8, type: 3}
+      propertyPath: points.Array.size
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5930956698814743297, guid: 83fa459b17916e64a91d264cee09d6b8, type: 3}
       propertyPath: points.Array.data[0]
       value: 
@@ -11238,13 +11242,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cam Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 5117720283876397999, guid: ce4e7b8b40daed44bb34a71ec7c07f1d, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5793619735640126483, guid: ce4e7b8b40daed44bb34a71ec7c07f1d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -21.52
+      value: -13.79
       objectReference: {fileID: 0}
     - target: {fileID: 5793619735640126483, guid: ce4e7b8b40daed44bb34a71ec7c07f1d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.45
+      value: 12.05
       objectReference: {fileID: 0}
     - target: {fileID: 5793619735640126483, guid: ce4e7b8b40daed44bb34a71ec7c07f1d, type: 3}
       propertyPath: m_LocalPosition.z
@@ -11280,11 +11288,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9029669136131015338, guid: ce4e7b8b40daed44bb34a71ec7c07f1d, type: 3}
       propertyPath: left
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9029669136131015338, guid: ce4e7b8b40daed44bb34a71ec7c07f1d, type: 3}
       propertyPath: right
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9029669136131015338, guid: ce4e7b8b40daed44bb34a71ec7c07f1d, type: 3}
       propertyPath: enemyToSpawn

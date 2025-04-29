@@ -4,6 +4,7 @@ using System.IO;
 using UnityEngine;
 using UnityEngine.AI;
 
+
 public class Enemy : MonoBehaviour
 {
 
@@ -55,20 +56,20 @@ public class Enemy : MonoBehaviour
         }
         if (!hit && right)
         {
-            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, this.transform.position.y), transform.right, 5.0f); //Change the Vector2.left to whatever direction we want default forward to be.
+            hit = Physics2D.Raycast(new Vector2(this.transform.position.x + 1, this.transform.position.y), transform.right, 5.0f); //Change the Vector2.left to whatever direction we want default forward to be.
             //Debug.Log("checking");
         }
         else if (!hit && left)
         {
-            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, this.transform.position.y), -transform.right, 5.0f);
+            hit = Physics2D.Raycast(new Vector2(this.transform.position.x + 1, this.transform.position.y), -transform.right, 5.0f);
         }
         else if (!hit && up)
         {
-            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, this.transform.position.y), transform.up, 5.0f);
+            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, this.transform.position.y + 1), transform.up, 5.0f);
         }
         else if (!hit && down) 
         {
-            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, this.transform.position.y), -transform.up, 5.0f);
+            hit = Physics2D.Raycast(new Vector2(this.transform.position.x, this.transform.position.y + 1), -transform.up, 5.0f);
         }
 
 
@@ -92,22 +93,22 @@ public class Enemy : MonoBehaviour
         if (!hit && right)
         {
             Vector2 direction = transform.right * 5;
-            Gizmos.DrawRay(this.transform.position, direction);
+            Gizmos.DrawRay(new Vector2(this.transform.position.x + 1, this.transform.position.y), direction);
         }
         else if (!hit && left)
         {
             Vector2 direction = -transform.right * 5;
-            Gizmos.DrawRay(this.transform.position, direction);
+            Gizmos.DrawRay(new Vector2(this.transform.position.x - 1, this.transform.position.y), direction);
         }
         else if (!hit && up)
         {
             Vector2 direction = transform.up * 5;
-            Gizmos.DrawRay(this.transform.position, direction);
+            Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y + 1), direction);
         }
         else if (!hit && down)
         {
             Vector2 direction = -transform.up * 5;
-            Gizmos.DrawRay(this.transform.position, direction);
+            Gizmos.DrawRay(new Vector2(this.transform.position.x, this.transform.position.y - 1), direction);
         }
     }
 

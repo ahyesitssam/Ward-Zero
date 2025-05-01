@@ -14,9 +14,8 @@ public class GameManager : MonoBehaviour
     public const int gsGameOver = 4;
 
     [Header("----Player Settings----")]
-    [SerializeField] private Vector3 spawnPoint = new Vector3(0, 5, 0);
-    //[SerializeField] Player P;
-    //GameObject playerInstance;
+    [SerializeField] private Vector3 spawnPoint;
+    [SerializeField] private GameObject playerInstance;
 
     // Managers
     //private UIManager UI;
@@ -29,16 +28,17 @@ public class GameManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
+    public void spawnPlayer()
     {
-        
+        if (playerInstance != null)
+        {
+            Instantiate(playerInstance, spawnPoint, Quaternion.identity);
+        }
     }
 
-    public void updateGameState(int gameState)
+    public void updateGameState(int state)
     {
-
-
+        gameState = state;
     }
 
 }

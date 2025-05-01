@@ -11,6 +11,13 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject quitGame;
     [SerializeField] public Sprite[] imageArray;
 
+    private DialogueManager DM;
+
+    private void Start()
+    {
+        DM = GameObject.Find("Dialogue System").GetComponent<DialogueManager>();
+    }
+
     void Update()
     {
         UpdateImage();
@@ -103,6 +110,7 @@ public class MainMenu : MonoBehaviour
     private void StartGame()
     {
         SceneManager.LoadScene("Floor-1");
+        DM.playerTalkStartGame();
     }
 
     private void EndGame()

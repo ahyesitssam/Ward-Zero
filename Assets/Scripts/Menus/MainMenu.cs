@@ -102,7 +102,7 @@ public class MainMenu : MonoBehaviour
 
     private void StartGame()
     {
-        SceneManager.LoadScene(1); // currently this is the hub room
+        SceneManager.LoadScene("Floor-1");
     }
 
     private void EndGame()

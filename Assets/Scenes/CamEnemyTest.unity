@@ -7730,6 +7730,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1563422608}
     - target: {fileID: 5930956698814743297, guid: 83fa459b17916e64a91d264cee09d6b8, type: 3}
+      propertyPath: points.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5930956698814743297, guid: 83fa459b17916e64a91d264cee09d6b8, type: 3}
       propertyPath: points.Array.data[0]
       value: 
       objectReference: {fileID: 1833515594}

@@ -151,7 +151,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("Collision");
         if (collision.collider.tag == "Enemy" || collision.collider.tag == "Projectile" || collision.collider.tag == "PatrolEnemy") 
@@ -159,4 +159,5 @@ public class Player : MonoBehaviour
             Debug.Log("Kill/Damage Player" + collision.collider.name);
         }
     }
+
 }

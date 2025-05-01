@@ -59,6 +59,7 @@ public class DialogueTracker : MonoBehaviour
 
     public void TriggerDialogue()
     {
-        StartCoroutine(Talk());
+        //Commented this out so unity doesn't yell errors at me -James
+        //StartCoroutine(Talk());
     }
 }

@@ -12504,6 +12504,14 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5117720283876397999, guid: ce4e7b8b40daed44bb34a71ec7c07f1d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5117720283876397999, guid: ce4e7b8b40daed44bb34a71ec7c07f1d, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.2
+      objectReference: {fileID: 0}
     - target: {fileID: 5208920563687587904, guid: ce4e7b8b40daed44bb34a71ec7c07f1d, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -14187,6 +14195,10 @@ PrefabInstance:
     - target: {fileID: 367464480518175663, guid: 45ba27f7b57c1984dba30eec1bc83981, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 367464480518175663, guid: 45ba27f7b57c1984dba30eec1bc83981, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 944512879044586656, guid: 45ba27f7b57c1984dba30eec1bc83981, type: 3}
       propertyPath: itemImages.Array.size

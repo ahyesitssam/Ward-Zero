@@ -11,6 +11,9 @@ TagManager:
   - sceneChanger
   - Projectile
   - Enemy
+  - Lilly
+  - Gertrude
+  - Harold
   layers:
   - Default
   - TransparentFX

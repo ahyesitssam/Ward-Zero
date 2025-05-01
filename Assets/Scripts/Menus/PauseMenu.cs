@@ -56,9 +56,10 @@ public class PauseMenu : MonoBehaviour
             }else if (currentPosition == 2)
             {
                 // go to main menu with scene change
+                //pop up "are you sure" first
             }else if (currentPosition == 3)
             {
-                // close the game
+                Application.Quit();
             }
         }
     }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,14 +13,10 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject HaroldPortrait;
     [SerializeField] private GameObject LillyPortrait;
 
-    private int playerCount = 0;
-    private int gertrudeCount = 0;
-    private int haroldCount = 0;
-    private int lillyCount = 0;
-
     [Header("Lines")]
     public string[] playerStartLines;
-    public string[] gertrudeLines;
+    public string[] gertrudeFirstMeetLines;
+    public string[] playerGertrudeFirstMeetLines;
     public string[] haroldLines;
     public string[] lillyLines;
 
@@ -81,6 +78,21 @@ public class DialogueManager : MonoBehaviour
         npcName = "Me";
         playerPortrait.SetActive(true);
         StartCoroutine(Talk(playerStartLines));
-        playerCount++;
+    }
+
+    public void GertrudeFirstMeet()
+    {
+        StartCoroutine(GertrudeFirstMeetSequence());
+    }
+
+    private IEnumerator GertrudeFirstMeetSequence()
+    {
+        npcName = "Gertrude";
+        gertrudePortrait.SetActive(true);
+        yield return StartCoroutine(Talk(gertrudeFirstMeetLines));
+
+        npcName = "Me";
+        playerPortrait.SetActive(true);
+        yield return StartCoroutine(Talk(playerGertrudeFirstMeetLines));
     }
 }

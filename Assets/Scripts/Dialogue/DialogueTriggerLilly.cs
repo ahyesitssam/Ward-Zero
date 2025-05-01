@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DialogueTrigger : MonoBehaviour
+public class DialogueTriggerLilly : MonoBehaviour
 {
     private DialogueManager DM;
     void Start()
@@ -10,8 +10,11 @@ public class DialogueTrigger : MonoBehaviour
         DM = GameObject.Find("Dialogue System").GetComponent<DialogueManager>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Player talking to Gertrude");
+        }
     }
 }

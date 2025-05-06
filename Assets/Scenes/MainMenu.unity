@@ -485,7 +485,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c33ad3a8667bea04a8ea12412173842c, type: 3}
   - {fileID: 21300000, guid: 0fd07fd6e5ad0154e87095e169a09b18, type: 3}
   - {fileID: 21300000, guid: d892c1aef1f36af408f56282893cdbd0, type: 3}
-  canvas: {fileID: 0}
+  canvas: {fileID: 1031234455}
 --- !u!212 &476578787
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1098,6 +1098,11 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: Hey there! I was wondering when you'd stop by!
+--- !u!1 &1031234455 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 367464480518175663, guid: 45ba27f7b57c1984dba30eec1bc83981, type: 3}
+  m_PrefabInstance: {fileID: 2102908577}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1247814951
 GameObject:
   m_ObjectHideFlags: 0

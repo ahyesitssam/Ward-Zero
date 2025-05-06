@@ -61,6 +61,35 @@ public class InventoryMenu : MonoBehaviour
         return false;
     }
 
+    public void remove(int item)
+    {
+        bool sortDown = false;
+        for (int i = 0; i < 6; i++)
+        {
+            if (itemInventory[i] == item)
+            {
+                itemInventory[i] = 0;
+                sortDown();
+            }
+        }
+    }
+
+    public void sortDown()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            if (itemInventory[i] == 0 && i != 6)
+            {
+                itemInventory[i] = itemInventory[i + 1];
+            }
+            else if (i == 6)
+            {
+                itemInventory[i] = 0;
+            }
+        }
+        
+    }
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.I) && !isGamePaused || Input.GetKeyDown(KeyCode.Tab) && !isGamePaused)//open and close inventory
@@ -116,11 +145,11 @@ public class InventoryMenu : MonoBehaviour
         }else if (Input.GetKeyDown(KeyCode.B))
         {
             AddItem(3);
-        }else */
+        }else 
         if (Input.GetKeyDown(KeyCode.C))// for testing, to be removed later
         {
             ClearInv();
-        }
+        }*/
 
         CheckIfGameIsPaused();
         UpdateInventory();

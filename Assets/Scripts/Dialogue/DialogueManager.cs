@@ -27,11 +27,36 @@ public class DialogueManager : MonoBehaviour
     [Header("UI References")]
     [SerializeField] private Text speechBox;
     [SerializeField] private Text characterBox;
+    [SerializeField] private Text pressEnterText;
     [SerializeField] private GameObject dialoguePanel;
+    private string enterText = "Press enter to continue...";
+
+
+    #region UI/Talk
 
     protected virtual void Start()
     {
         HideDialogueUI();
+    }
+
+    private void ShowDialogueUI()
+    {
+        Debug.Log("Dialog UI Shown");
+        characterBox.text = npcName;
+        dialoguePanel.SetActive(true);
+
+    }
+
+    private void HideDialogueUI()
+    {
+        Debug.Log("Dialog UI Hidden");
+        pressEnterText.text = "";
+        dialoguePanel.SetActive(false);
+
+        playerPortrait.SetActive(false);
+        gertrudePortrait.SetActive(false);
+        HaroldPortrait.SetActive(false);
+        LillyPortrait.SetActive(false);
     }
 
     private IEnumerator Talk(string[] dialogueLines)
@@ -48,30 +73,31 @@ public class DialogueManager : MonoBehaviour
                 yield return new WaitForSeconds(typingSpeed);
             }
 
+            StartCoroutine(displayEnterText());
+
             yield return new WaitUntil(() => Input.GetKeyDown(KeyCode.Return));
+
+            pressEnterText.text = "";
         }
 
         HideDialogueUI();
     }
 
-    private void ShowDialogueUI()
+    private IEnumerator displayEnterText()
     {
-        Debug.Log("Dialog UI Shown");
-        characterBox.text = npcName;
-        dialoguePanel.SetActive(true);
-        
+        for (int i = 0; i <= enterText.Length; i++)
+        {
+            pressEnterText.text = enterText.Substring(0, i);
+            yield return new WaitForSeconds(typingSpeed);
+        }
+
     }
 
-    private void HideDialogueUI()
-    {
-        Debug.Log("Dialog UI Hidden");
-        dialoguePanel.SetActive(false);
 
-        playerPortrait.SetActive(false);
-        gertrudePortrait.SetActive(false);
-        HaroldPortrait.SetActive(false);
-        LillyPortrait.SetActive(false);
-    }
+    #endregion
+
+
+    #region Player
 
     public void playerTalkStartGame()
     {
@@ -79,6 +105,10 @@ public class DialogueManager : MonoBehaviour
         playerPortrait.SetActive(true);
         StartCoroutine(Talk(playerStartLines));
     }
+
+    #endregion
+
+    #region Gertrude
 
     public void GertrudeFirstMeet()
     {
@@ -95,4 +125,7 @@ public class DialogueManager : MonoBehaviour
         playerPortrait.SetActive(true);
         yield return StartCoroutine(Talk(playerGertrudeFirstMeetLines));
     }
+
+
+    #endregion
 }

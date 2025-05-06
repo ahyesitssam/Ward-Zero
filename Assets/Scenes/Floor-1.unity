@@ -5857,7 +5857,7 @@ GameObject:
   - component: {fileID: 651631947}
   m_Layer: 0
   m_Name: Gertrude
-  m_TagString: Untagged
+  m_TagString: Gertrude
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -12031,7 +12031,7 @@ GameObject:
   - component: {fileID: 1485634690}
   m_Layer: 0
   m_Name: Lilly
-  m_TagString: Untagged
+  m_TagString: Lilly
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24524,7 +24524,7 @@ GameObject:
   - component: {fileID: 2051028637}
   m_Layer: 0
   m_Name: Harold
-  m_TagString: Untagged
+  m_TagString: Harold
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

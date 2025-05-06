@@ -24,12 +24,12 @@ public class AnimationController : MonoBehaviour
 
     void StartMoving()
     {
-        if (verticalInput > 0)
+        if (verticalInput > 0 && Mathf.Abs(verticalInput) > Mathf.Abs(horizontalInput))
         {
             anim.Play("BackwardsWalk");
             lastDirection = 0;
         }
-        else if (verticalInput < 0)
+        else if (verticalInput < 0 && Mathf.Abs(verticalInput) > Mathf.Abs(horizontalInput))
         {
             anim.Play("ForwardsWalk");
             lastDirection = 1;

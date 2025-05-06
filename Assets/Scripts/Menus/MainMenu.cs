@@ -10,6 +10,8 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject settings;
     [SerializeField] public GameObject quitGame;
     [SerializeField] public Sprite[] imageArray;
+    [SerializeField] public GameObject canvas;
+
 
     private DialogueManager DM;
 
@@ -95,6 +97,7 @@ public class MainMenu : MonoBehaviour
     {
         if (currentState == 1)
         {
+            canvas.SetActive(true);
             StartGame();
         }
         else if (currentState == 2)

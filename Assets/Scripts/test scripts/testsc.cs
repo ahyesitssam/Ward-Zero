@@ -21,6 +21,8 @@ public class testsc : MonoBehaviour
             Debug.Log("Mask:" + IM.checkForItem(4));
             Debug.Log("Pills:" + IM.checkForItem(5));
             Debug.Log("Tank:" + IM.checkForItem(6));
+            IM.remove(1);
         }
+        
     }
 }

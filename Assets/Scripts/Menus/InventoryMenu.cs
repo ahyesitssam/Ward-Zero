@@ -63,28 +63,30 @@ public class InventoryMenu : MonoBehaviour
 
     public void remove(int item)
     {
-        bool sortDown = false;
+        
         for (int i = 0; i < 6; i++)
         {
             if (itemInventory[i] == item)
             {
                 itemInventory[i] = 0;
-                sortDown();
+                sortDown(i);
             }
         }
     }
 
-    public void sortDown()
+    public void sortDown(int intt)
     {
-        for (int i = 0; i < 6; i++)
+        for (int i = intt; i < 6; i++)
         {
-            if (itemInventory[i] == 0 && i != 6)
+            if (i != 5)
             {
                 itemInventory[i] = itemInventory[i + 1];
             }
-            else if (i == 6)
+            else if (i == 5)
             {
                 itemInventory[i] = 0;
+                itemSlot--;
+                UpdateInventory();
             }
         }
         

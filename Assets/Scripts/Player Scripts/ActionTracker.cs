@@ -14,16 +14,17 @@ public class ActionTracker : MonoBehaviour
     void Start()
     {
         //probably connect to the game manager?
+        DontDestroyOnLoad(this.gameObject);
     }
 
     void Update()
     {
         checkActionAmount();
         updateActionImage();
-        if (Input.GetKeyDown(KeyCode.H))//for testing
+        /*if (Input.GetKeyDown(KeyCode.H))//for testing
         {
             actionAmount--;
-        }
+        }*/
     }
 
     public void checkActionAmount()

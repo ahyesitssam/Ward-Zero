@@ -1370,11 +1370,16 @@ MonoBehaviour:
   - I'm dying over here! I can hardly breathe.
   - Be a doll and get me a cigarette, would ya?
   playerGertrudeFirstMeetLines:
-  - I'm sorry, but there's no smoking allowed in this facility. Not to mention it
-    is highly dangerous for you to be smoking in this condition.
+  - I'm sorry, but there's no smoking allowed in this facility.
+  - Not to mention it is highly dangerous for you to be smoking in this condition.
   - I'll see what I can do.
-  haroldLines: []
-  lillyLines: []
+  gertrudeWaitForItem:
+  - What are you waiting for? Get me something that'll help these damn lungs!
+  playerGiveGertrudeItem:
+  - Here, this oxygen should help.
+  gertrudeTakesItem:
+  - It's no cigarette...
+  - ...but I feel much better. Thanks, kid.
   typingSpeed: 0.05
   speechBox: {fileID: 1014107777}
   characterBox: {fileID: 526160777}

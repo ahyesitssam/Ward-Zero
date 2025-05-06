@@ -17,8 +17,10 @@ public class DialogueManager : MonoBehaviour
     public string[] playerStartLines;
     public string[] gertrudeFirstMeetLines;
     public string[] playerGertrudeFirstMeetLines;
-    public string[] haroldLines;
-    public string[] lillyLines;
+    public string[] gertrudeWaitForItem;
+    public string[] playerGiveGertrudeItem;
+    public string[] gertrudeTakesItem;
+
 
     [Header("Dialogue Settings")]
     [Range(0.001f, 0.5f)]
@@ -31,6 +33,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject dialoguePanel;
     private string enterText = "Press enter to continue...";
 
+    private Player P;
 
     #region UI/Talk
 
@@ -61,6 +64,7 @@ public class DialogueManager : MonoBehaviour
 
     private IEnumerator Talk(string[] dialogueLines)
     {
+
         ShowDialogueUI();
 
         Debug.Log("Text being displayed");
@@ -124,6 +128,30 @@ public class DialogueManager : MonoBehaviour
         npcName = "Me";
         playerPortrait.SetActive(true);
         yield return StartCoroutine(Talk(playerGertrudeFirstMeetLines));
+    }
+
+    public void GertrudeWaitingOnItem()
+    {
+        npcName = "Gertrude";
+        gertrudePortrait.SetActive(true);
+        StartCoroutine(Talk(gertrudeWaitForItem));
+    }
+
+    public void GiveGertrudeOxygen()
+    {
+        StartCoroutine(GiveGertrudeOxygenSequence());
+    }
+
+    private IEnumerator GiveGertrudeOxygenSequence()
+    {
+        npcName = "Me";
+        playerPortrait.SetActive(true);
+        yield return StartCoroutine(Talk(playerGiveGertrudeItem));
+
+        npcName = "Gertrude";
+        gertrudePortrait.SetActive(true);
+        yield return StartCoroutine(Talk(gertrudeTakesItem));
+
     }
 
 

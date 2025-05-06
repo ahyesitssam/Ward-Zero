@@ -13,15 +13,28 @@ public class Player : MonoBehaviour
         Add a tag to the object if needed
      */
 
-
     public float playerspeed = 5f;
-    bool inTriggerNPC = false;
+    public bool canMove = true;
     bool inTriggerPickUp = false;
+    private GameObject currPickUp = null;
+    private DialogueManager DM;
+    private InventoryMenu IM;
+    private ActionTracker AT;
+
+
+    [SerializeField] GameObject gertrudeTrigger;
+    [SerializeField] GameObject haroldTrigger;
+    [SerializeField] GameObject lillyTrigger;
+    private int gertrudeIndex = 0;
+    private int haroldIndex = 0;
+    private int lillyIndex = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        DM = GameObject.Find("Dialogue System").GetComponent<DialogueManager>();
+        IM = GameObject.Find("Canvas").GetComponent<InventoryMenu>();
+        AT = GameObject.Find("Canvas").GetComponent<ActionTracker>();
     }
 
     // Update is called once per frame
@@ -32,6 +45,8 @@ public class Player : MonoBehaviour
 
     private void move()
     {
+        //if (!canMove) return; // Don't let the player move
+
         //Records the input of the player using the Unity Default Horizontal Axis.  Allows for both controller and keyboard input.
         float horizontalInput = Input.GetAxis("Horizontal");
 
@@ -44,12 +59,7 @@ public class Player : MonoBehaviour
         //Moves the player using transform translate which allows for movement in both directions.  Up is the positive direction because of Vector3.up
         transform.Translate(Vector3.up * playerspeed * verticalInput * Time.deltaTime);
 
-        //Checks if the player is inside a trigger box and if they pressed e.  
-        if (Input.GetKeyDown(KeyCode.E) && inTriggerNPC)
-        {
-            //Place the UI activation for NPCs here
-            Debug.Log("UI Dialouge Box Appears Now");
-        } else if (Input.GetKeyDown(KeyCode.E) && inTriggerPickUp)
+        if (Input.GetKeyDown(KeyCode.E) && inTriggerPickUp)
         {
             //Place the UI activation and inventory addition for Items here
             //Debug.Log("UI Pickup and Inventory Addition");
@@ -60,60 +70,53 @@ public class Player : MonoBehaviour
 
         }
 
-        /*float up = 0.0f;
-        float down = 0.0f;
-        float right = 0.0f;
-        float left = 0.0f;
-
-        if (Input.GetKey(KeyCode.W))
-        {
-            up = 1.0f;
-        }
-        else
-        {
-            up = 0.0f;
-        }
-
-        if (Input.GetKey(KeyCode.S))
-        {
-            down = 1.0f;
-        }
-        else
-        {
-            down = 0.0f;
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            left = 1.0f;
-        }
-        else
-        {
-            left = 0.0f;
-        }
-
-        if (Input.GetKey(KeyCode.D))
-        {
-            right = 1.0f;
-        }
-        else
-        {
-            right = 0.0f;
-        }
-
-
-        transform.position = new Vector3(transform.position.x + (right - left) * movementSpeed,transform.position.y + (up - down) * movementSpeed,0.0f);*/
-
     }
-
-    private GameObject currPickUp = null;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //call a compare tag on the collison then set the appropriate bool to true.
-        if (collision.tag == "NPC") 
+        if (collision.tag == "Lilly") 
         {
-            inTriggerNPC = true;
+            inTriggerNPC();
+        }
+        if (collision.tag == "Gertrude")
+        {
+            inTriggerNPC();
+            switch (gertrudeIndex)
+            {
+                case 0: // Talk to gertrude for the first time
+                    DM.GertrudeFirstMeet();
+                    gertrudeIndex++;
+                    break;
+                case 1: // Talk to gertrude again 
+
+                    // Player has both mask & oxygen tank and gives it to Gertrude
+                    if (IM.checkForItem(4) && IM.checkForItem(6)) 
+                    {
+                        AT.useAnAction();
+                        DM.GiveGertrudeOxygen();
+                        gertrudeIndex++;
+                        gertrudeTrigger.SetActive(false);
+                        
+                    } else // Player doesnt have the correct item
+                    {
+                        DM.GertrudeWaitingOnItem();
+                    }
+                    break;
+                case 2: // Talk to gertrude on roof
+
+                    break;
+                default:
+                    Debug.Log("ERROR: Issue with gertrude dialogue");
+                    break;
+            }
+
+            
+            
+        }
+        if (collision.tag == "Harold")
+        {
+            inTriggerNPC();
         }
         if (collision.tag == "PickUp")
         {
@@ -140,14 +143,14 @@ public class Player : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         //call a compare tag on the collison then set the appropriate bool to false.  
-        if (collision.tag == "NPC")
-        {
-            inTriggerNPC = false;
-        }
         if (collision.tag == "PickUp")
         {
             inTriggerPickUp = false;
             currPickUp = null;
+        }
+        if (collision.tag == "Gertrude" || collision.tag == "Lilly" || collision.tag == "Harold")
+        {
+            canMove = true;
         }
     }
 
@@ -158,6 +161,11 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Kill/Damage Player" + collision.collider.name);
         }
+    }
+
+    private void inTriggerNPC()
+    {
+        canMove = false;
     }
 
 }

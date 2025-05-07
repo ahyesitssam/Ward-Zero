@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Net.NetworkInformation;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class GameManager : MonoBehaviour
     [Header("----Player Settings----")]
     [SerializeField] private Vector3 spawnPoint;
     [SerializeField] private GameObject playerInstance;
+    Vector3 placeToMove;
 
     // Managers
     //private UIManager UI;
@@ -41,4 +44,16 @@ public class GameManager : MonoBehaviour
         gameState = state;
     }
 
+    public void rememberLocation(Vector3 transitionPoint) 
+    {
+        if(SceneManager.GetActiveScene().name == "Floor-1")
+            spawnPoint = transitionPoint;
+    }
+
+    public Vector3 getLocation() 
+    {
+        if (placeToMove != new Vector3(0, 0, 0))
+            return placeToMove;
+        return spawnPoint;
+    }
 }

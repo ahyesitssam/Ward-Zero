@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     private DialogueManager DM;
     private InventoryMenu IM;
     private ActionTracker AT;
+    private GameManager GM;
 
 
     [SerializeField] GameObject gertrudeTrigger;
@@ -35,6 +36,9 @@ public class Player : MonoBehaviour
         DM = GameObject.Find("Dialogue System").GetComponent<DialogueManager>();
         IM = GameObject.Find("Canvas").GetComponent<InventoryMenu>();
         AT = GameObject.Find("Canvas").GetComponent<ActionTracker>();
+        GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        this.transform.position = GM.getLocation();
     }
 
     // Update is called once per frame
@@ -130,6 +134,7 @@ public class Player : MonoBehaviour
         }
         if (collision.tag == "sceneChanger") 
         {
+            GM.rememberLocation(this.transform.position);
             sceneChanger sceneChanger = collision.gameObject.GetComponent<sceneChanger>();
             sceneChanger.changeScene();
         }

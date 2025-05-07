@@ -34,7 +34,7 @@ public class ActionTracker : MonoBehaviour
 
     public void checkActionAmount()
     {
-        if(actionAmount <= 0)
+        if(actionAmount <= 0 && actionBar.activeSelf)
         {
             actionBar.SetActive(false);
             actionAmount = 0;

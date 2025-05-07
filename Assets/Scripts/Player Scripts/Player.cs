@@ -83,6 +83,35 @@ public class Player : MonoBehaviour
         if (collision.tag == "Lilly") 
         {
             inTriggerNPC();
+            switch (lillyIndex)
+            {
+                case 0: // Talk to lilly for the first time
+                    DM.LillyFirstMeetPlayer();
+                    lillyIndex++;
+                    break;
+                case 1: // Talk to lilly again 
+
+                    // Player has pills and gives it to Lilly
+                    if (IM.checkForItem(5))
+                    {
+                        AT.useAnAction();
+                        DM.GiveLillyItem();
+                        lillyIndex++;
+                        lillyTrigger.SetActive(false);
+
+                    }
+                    else // Player doesnt have the correct item
+                    {
+                        DM.LillyWaitForPills();
+                    }
+                    break;
+                case 2: // Talk to lilly on roof
+
+                    break;
+                default:
+                    Debug.Log("ERROR: Issue with harold dialogue");
+                    break;
+            }
         }
         if (collision.tag == "Gertrude")
         {
@@ -115,13 +144,39 @@ public class Player : MonoBehaviour
                     Debug.Log("ERROR: Issue with gertrude dialogue");
                     break;
             }
-
-            
-            
         }
         if (collision.tag == "Harold")
         {
             inTriggerNPC();
+            switch (haroldIndex)
+            {
+                case 0: // Talk to harold for the first time
+                    DM.HaroldFirstMeetPlayer();
+                    haroldIndex++;
+                    break;
+                case 1: // Talk to harold again 
+
+                    // Player has sandwich and gives it to Harold
+                    if (IM.checkForItem(1))
+                    {
+                        AT.useAnAction();
+                        DM.giveHaroldItem();
+                        haroldIndex++;
+                        haroldTrigger.SetActive(false);
+
+                    }
+                    else // Player doesnt have the correct item
+                    {
+                        DM.HaroldWaitForSandwich();
+                    }
+                    break;
+                case 2: // Talk to harold on roof
+
+                    break;
+                default:
+                    Debug.Log("ERROR: Issue with harold dialogue");
+                    break;
+            }
         }
         if (collision.tag == "PickUp")
         {

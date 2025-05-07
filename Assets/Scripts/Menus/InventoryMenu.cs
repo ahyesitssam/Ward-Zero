@@ -35,7 +35,7 @@ public class InventoryMenu : MonoBehaviour
     private void setItemDescriptions()
     {
         itemDescriptions[0] = ""; //blank slot
-        itemDescriptions[1] = "Wood";
+        itemDescriptions[1] = "Sandwich";
         itemDescriptions[2] = "Rock";
         itemDescriptions[3] = "Syringe";
         itemDescriptions[4] = "Breathing Mask";

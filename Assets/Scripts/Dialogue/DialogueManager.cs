@@ -13,7 +13,19 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject HaroldPortrait;
     [SerializeField] private GameObject LillyPortrait;
 
-    [Header("Lines")]
+    [Header("Harold Lines")]
+    public string[] playerHaroldFirstMeet;
+    public string[] HaroldFirstMeet;
+    public string[] haroldWaitForItem;
+    public string[] playerGiveHaroldItem;
+
+    [Header("Lilly Lines")]
+    public string[] playerLillyFirstMeet;
+    public string[] LillyFirstMeet;
+    public string[] LillyWaitForItem;
+    public string[] playerGiveLillyItem;
+
+    [Header("Gertrude Lines")]
     public string[] playerStartLines;
     public string[] gertrudeFirstMeetLines;
     public string[] playerGertrudeFirstMeetLines;
@@ -34,6 +46,7 @@ public class DialogueManager : MonoBehaviour
     private string enterText = "Press enter to continue...";
 
     private Player P;
+    [SerializeField] private string[] playerBasementLines;
 
     #region UI/Talk
 
@@ -100,6 +113,75 @@ public class DialogueManager : MonoBehaviour
 
     #endregion
 
+    #region Lilly
+
+    public void GiveLillyItem()
+    {
+        npcName = "Lilly";
+        LillyPortrait.SetActive(true);
+        StartCoroutine(Talk(playerGiveLillyItem));
+    }
+
+    public void LillyWaitForPills()
+    {
+        npcName = "Lilly";
+        LillyPortrait.SetActive(true);
+        StartCoroutine(Talk(LillyWaitForItem));
+    }
+
+    public void LillyFirstMeetPlayer()
+    {
+        StartCoroutine(LillyFirstMeetSequence());
+    }
+
+    private IEnumerator LillyFirstMeetSequence()
+    {
+        npcName = "Lilly";
+        LillyPortrait.SetActive(true);
+        yield return StartCoroutine(Talk(LillyFirstMeet));
+
+        npcName = "Me";
+        playerPortrait.SetActive(true);
+        yield return StartCoroutine(Talk(playerLillyFirstMeet));
+    }
+
+
+    #endregion
+
+
+    #region Harold
+
+    public void HaroldWaitForSandwich()
+    {
+        npcName = "Harold";
+        HaroldPortrait.SetActive(true);
+        StartCoroutine(Talk(haroldWaitForItem));
+    }
+
+    public void giveHaroldItem()
+    {
+        npcName = "Harold";
+        HaroldPortrait.SetActive(true);
+        StartCoroutine(Talk(playerGiveHaroldItem));
+    }
+
+    public void HaroldFirstMeetPlayer()
+    {
+        StartCoroutine(HaroldFirstMeetSequence());
+    }
+
+    private IEnumerator HaroldFirstMeetSequence()
+    {
+        npcName = "Me";
+        playerPortrait.SetActive(true);
+        yield return StartCoroutine(Talk(playerHaroldFirstMeet));
+
+        npcName = "Harold";
+        HaroldPortrait.SetActive(true);
+        yield return StartCoroutine(Talk(HaroldFirstMeet));
+    }
+
+    #endregion
 
     #region Player
 
@@ -110,6 +192,12 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(Talk(playerStartLines));
     }
 
+    public void BasementTrigger()
+    {
+        npcName = "Me";
+        playerPortrait.SetActive(true);
+        StartCoroutine(Talk(playerBasementLines));
+    }
     #endregion
 
     #region Gertrude
@@ -153,6 +241,8 @@ public class DialogueManager : MonoBehaviour
         yield return StartCoroutine(Talk(gertrudeTakesItem));
 
     }
+
+
 
 
     #endregion

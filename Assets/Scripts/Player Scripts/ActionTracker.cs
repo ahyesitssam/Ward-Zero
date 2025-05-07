@@ -10,11 +10,16 @@ public class ActionTracker : MonoBehaviour
     [SerializeField] public Sprite[] actionAmountImages; // the images of amount of actions
     [SerializeField] public GameObject actionBar; //the UI that shows how many actions player has
 
+    [SerializeField] public GameObject basementCollider;
+
+    private DialogueManager DM;
+
 
     void Start()
     {
         //probably connect to the game manager?
         DontDestroyOnLoad(this.gameObject);
+        DM = GameObject.Find("Dialogue System").GetComponent<DialogueManager>();
     }
 
     void Update()
@@ -34,6 +39,8 @@ public class ActionTracker : MonoBehaviour
             actionBar.SetActive(false);
             actionAmount = 0;
             //out of actions time advances
+
+            DM.BasementTrigger();
         }
     }
 
@@ -45,5 +52,6 @@ public class ActionTracker : MonoBehaviour
     public void useAnAction() //called from other files on things that will use actions to lower the total
     {
         actionAmount--;
+        checkActionAmount();
     }
 }

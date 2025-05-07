@@ -1103,6 +1103,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 367464480518175663, guid: 45ba27f7b57c1984dba30eec1bc83981, type: 3}
   m_PrefabInstance: {fileID: 2102908577}
   m_PrefabAsset: {fileID: 0}
+--- !u!223 &1031234461 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 5546054521981634438, guid: 45ba27f7b57c1984dba30eec1bc83981, type: 3}
+  m_PrefabInstance: {fileID: 2102908577}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1247814951
 GameObject:
   m_ObjectHideFlags: 0
@@ -1411,11 +1416,12 @@ MonoBehaviour:
   gertrudeTakesItem:
   - It's no cigarette...
   - ...but I feel much better. Thanks, kid.
-  typingSpeed: 0.05
+  typingSpeed: 0.01
   speechBox: {fileID: 1014107777}
   characterBox: {fileID: 526160777}
   pressEnterText: {fileID: 1572997549}
   dialoguePanel: {fileID: 110418348}
+  AT: {fileID: 1031234461}
   playerBasementLines:
   - What was that?!
   - I heard something coming from the basement...

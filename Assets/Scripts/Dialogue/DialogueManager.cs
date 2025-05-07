@@ -36,7 +36,7 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Dialogue Settings")]
     [Range(0.001f, 0.5f)]
-    [SerializeField] private float typingSpeed = 0.05f;
+    [SerializeField] private float typingSpeed = 0.25f;
 
     [Header("UI References")]
     [SerializeField] private Text speechBox;
@@ -46,14 +46,14 @@ public class DialogueManager : MonoBehaviour
     private string enterText = "Press enter to continue...";
 
     private Player P;
-    private ActionTracker AT;
+    [SerializeField] private Canvas AT;
     [SerializeField] private string[] playerBasementLines;
 
     #region UI/Talk
 
     protected virtual void Start()
     {
-        AT = GameObject.Find("Canvas").GetComponent<ActionTracker>();
+        
         HideDialogueUI();
     }
 
@@ -151,7 +151,7 @@ public class DialogueManager : MonoBehaviour
     {
         yield return StartCoroutine(Talk(playerGiveLillyItem));
 
-        if (AT.actionAmount <= 0)
+        if (AT.GetComponent<ActionTracker>().actionAmount <= 0)
         {
             BasementTrigger();
         }
@@ -181,7 +181,7 @@ public class DialogueManager : MonoBehaviour
     {
         yield return StartCoroutine(Talk(playerGiveHaroldItem));
 
-        if (AT.actionAmount <= 0)
+        if (AT.GetComponent<ActionTracker>().actionAmount <= 0)
         {
             BasementTrigger();
         }
@@ -262,7 +262,7 @@ public class DialogueManager : MonoBehaviour
         gertrudePortrait.SetActive(true);
         yield return StartCoroutine(Talk(gertrudeTakesItem));
 
-        if (AT.actionAmount <= 0)
+        if (AT.GetComponent<ActionTracker>().actionAmount <= 0)
         {
             BasementTrigger();
         }

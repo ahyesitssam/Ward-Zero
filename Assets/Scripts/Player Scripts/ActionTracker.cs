@@ -12,7 +12,7 @@ public class ActionTracker : MonoBehaviour
 
     [SerializeField] public GameObject basementCollider;
 
-    private DialogueManager DM;
+    public DialogueManager DM;
 
 
     void Start()
@@ -40,7 +40,7 @@ public class ActionTracker : MonoBehaviour
             actionAmount = 0;
             //out of actions time advances
 
-            DM.BasementTrigger();
+            
         }
     }
 

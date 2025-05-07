@@ -46,12 +46,14 @@ public class DialogueManager : MonoBehaviour
     private string enterText = "Press enter to continue...";
 
     private Player P;
+    private ActionTracker AT;
     [SerializeField] private string[] playerBasementLines;
 
     #region UI/Talk
 
     protected virtual void Start()
     {
+        AT = GameObject.Find("Canvas").GetComponent<ActionTracker>();
         HideDialogueUI();
     }
 
@@ -119,7 +121,7 @@ public class DialogueManager : MonoBehaviour
     {
         npcName = "Lilly";
         LillyPortrait.SetActive(true);
-        StartCoroutine(Talk(playerGiveLillyItem));
+        StartCoroutine(LillyEnd());
     }
 
     public void LillyWaitForPills()
@@ -145,6 +147,16 @@ public class DialogueManager : MonoBehaviour
         yield return StartCoroutine(Talk(playerLillyFirstMeet));
     }
 
+    private IEnumerator LillyEnd()
+    {
+        yield return StartCoroutine(Talk(playerGiveLillyItem));
+
+        if (AT.actionAmount <= 0)
+        {
+            BasementTrigger();
+        }
+    }
+
 
     #endregion
 
@@ -162,7 +174,17 @@ public class DialogueManager : MonoBehaviour
     {
         npcName = "Harold";
         HaroldPortrait.SetActive(true);
-        StartCoroutine(Talk(playerGiveHaroldItem));
+        StartCoroutine(HaroldEnd());
+    }
+
+    private IEnumerator HaroldEnd()
+    {
+        yield return StartCoroutine(Talk(playerGiveHaroldItem));
+
+        if (AT.actionAmount <= 0)
+        {
+            BasementTrigger();
+        }
     }
 
     public void HaroldFirstMeetPlayer()
@@ -192,7 +214,7 @@ public class DialogueManager : MonoBehaviour
         StartCoroutine(Talk(playerStartLines));
     }
 
-    public void BasementTrigger()
+    private void BasementTrigger()
     {
         npcName = "Me";
         playerPortrait.SetActive(true);
@@ -240,6 +262,10 @@ public class DialogueManager : MonoBehaviour
         gertrudePortrait.SetActive(true);
         yield return StartCoroutine(Talk(gertrudeTakesItem));
 
+        if (AT.actionAmount <= 0)
+        {
+            BasementTrigger();
+        }
     }
 
 

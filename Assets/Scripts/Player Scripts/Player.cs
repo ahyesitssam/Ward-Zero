@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -142,6 +143,7 @@ public class Player : MonoBehaviour
         if (collision.tag == "Enemy" || collision.tag == "Projectile") 
         {
             Debug.Log("Kill/Damage Player" + collision.name);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 
@@ -165,6 +167,7 @@ public class Player : MonoBehaviour
         if (collision.collider.tag == "Enemy" || collision.collider.tag == "Projectile" || collision.collider.tag == "PatrolEnemy") 
         {
             Debug.Log("Kill/Damage Player" + collision.collider.name);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 

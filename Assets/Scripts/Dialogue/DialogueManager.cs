@@ -55,8 +55,12 @@ public class DialogueManager : MonoBehaviour
 
     protected virtual void Start()
     {
-        
         HideDialogueUI();
+    }
+
+    private void Update()
+    {
+        
     }
 
     private void ShowDialogueUI()

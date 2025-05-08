@@ -35,12 +35,12 @@ public class InventoryMenu : MonoBehaviour
     private void setItemDescriptions()
     {
         itemDescriptions[0] = ""; //blank slot
-        itemDescriptions[1] = "Sandwich";
-        itemDescriptions[2] = "Rock";
-        itemDescriptions[3] = "Syringe";
-        itemDescriptions[4] = "Breathing Mask";
-        itemDescriptions[5] = "Pills";
-        itemDescriptions[6] = "Oxygen Tank";
+        itemDescriptions[1] = "A classic hospital sandwich. Not the tastiest, but full of nutrients.";
+        itemDescriptions[2] = "Keys to the roof. I think there's a helicopter up there.";
+        itemDescriptions[3] = "Syringe"; //unused :)
+        itemDescriptions[4] = "An oxygen mask. Not much use without the tank.";
+        itemDescriptions[5] = "Antibiotics. These would help someone feel better.";
+        itemDescriptions[6] = "An oxygen tank. Not much use without the mask.";
 
     }
 

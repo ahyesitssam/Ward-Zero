@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Vector3 spawnPoint;
     [SerializeField] private GameObject playerInstance;
     Vector3 placeToMove;
+    public bool basementOpen = false;
 
     // Managers
     //private UIManager UI;
@@ -28,7 +29,12 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        basementOpen = false;
+    }
+
+    public void basement()
+    {
+        basementOpen = true;
     }
 
     public void spawnPlayer()

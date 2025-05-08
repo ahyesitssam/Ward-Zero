@@ -18,6 +18,7 @@ public class MainMenu : MonoBehaviour
     private void Start()
     {
         DM = GameObject.Find("Dialogue System").GetComponent<DialogueManager>();
+        currentState = 1;
     }
 
     void Update()

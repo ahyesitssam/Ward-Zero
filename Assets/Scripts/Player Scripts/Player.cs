@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     private ActionTracker AT;
     private GameManager GM;
 
+    [SerializeField] GameObject pickUpText;
 
     [SerializeField] GameObject gertrudeTrigger;
     [SerializeField] GameObject haroldTrigger;
@@ -38,6 +39,8 @@ public class Player : MonoBehaviour
         IM = GameObject.Find("Canvas").GetComponent<InventoryMenu>();
         AT = GameObject.Find("Canvas").GetComponent<ActionTracker>();
         GM = GameObject.Find("GameManager").GetComponent<GameManager>();
+
+        pickUpText = GameObject.Find("PickUpText");
 
         this.transform.position = GM.getLocation();
     }
@@ -64,7 +67,15 @@ public class Player : MonoBehaviour
         //Moves the player using transform translate which allows for movement in both directions.  Up is the positive direction because of Vector3.up
         transform.Translate(Vector3.up * playerspeed * verticalInput * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.E) && inTriggerPickUp)
+        if (inTriggerPickUp)
+        {
+            pickUpText.SetActive(true);
+        }
+        else
+        {
+            pickUpText.SetActive(false);
+        }
+        if (Input.GetKeyDown(KeyCode.E) && inTriggerPickUp || Input.GetKeyDown(KeyCode.Return) && inTriggerPickUp)
         {
             //Place the UI activation and inventory addition for Items here
             //Debug.Log("UI Pickup and Inventory Addition");

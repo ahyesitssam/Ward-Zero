@@ -32,6 +32,9 @@ public class Player : MonoBehaviour
     private int haroldIndex = 0;
     private int lillyIndex = 0;
 
+
+    [SerializeField] bool WZLoreTriggered = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -210,6 +213,13 @@ public class Player : MonoBehaviour
         {
             Debug.Log("Kill/Damage Player" + collision.name);
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+
+        if (collision.tag == "WZ" && !WZLoreTriggered) 
+        {
+            Debug.Log("WardZeroTrigger");
+            //Display the lore here
+            SceneManager.LoadScene("WardZeroLore");
         }
     }
 

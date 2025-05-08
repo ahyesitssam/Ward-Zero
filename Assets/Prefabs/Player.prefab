@@ -170,7 +170,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 5
+  m_SortingOrder: 101
   m_Sprite: {fileID: 21300000, guid: f0d44424af1b04248bbbd69aff0a2366, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -195,6 +195,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerspeed: 5
+  canMove: 1
+  pickUpText: {fileID: 0}
+  gertrudeTrigger: {fileID: 0}
+  haroldTrigger: {fileID: 0}
+  lillyTrigger: {fileID: 0}
 --- !u!61 &7416388906945942116
 BoxCollider2D:
   m_ObjectHideFlags: 0

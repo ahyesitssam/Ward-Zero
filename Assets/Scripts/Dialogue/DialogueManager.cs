@@ -49,11 +49,13 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private Canvas AT;
     [SerializeField] private string[] playerBasementLines;
 
+    [SerializeField] GameObject doorBoards;
+
     #region UI/Talk
 
     protected virtual void Start()
     {
-        
+        doorBoards = GameObject.Find("DoorBoards");
         HideDialogueUI();
     }
 
@@ -219,6 +221,7 @@ public class DialogueManager : MonoBehaviour
         npcName = "Me";
         playerPortrait.SetActive(true);
         StartCoroutine(Talk(playerBasementLines));
+        doorBoards.SetActive(false);
     }
     #endregion
 

@@ -1534,7 +1534,7 @@ GameObject:
   - component: {fileID: 1671307328}
   - component: {fileID: 1671307327}
   m_Layer: 5
-  m_Name: Pick up text
+  m_Name: PickUpText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1783,7 +1783,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 367464480518175663, guid: 45ba27f7b57c1984dba30eec1bc83981, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 944512879044586656, guid: 45ba27f7b57c1984dba30eec1bc83981, type: 3}
       propertyPath: itemImages.Array.data[1]

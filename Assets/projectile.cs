@@ -20,8 +20,9 @@ public class projectile : MonoBehaviour
     {
         yield return new WaitForSeconds(0.5f);
         this.gameObject.GetComponent<SpriteRenderer>().enabled = true;
-        this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
         yield return new WaitForSeconds(0.2f);
+        this.gameObject.GetComponent<BoxCollider2D>().enabled = true;
+        yield return new WaitForSeconds(0.8f);
         Destroy(gameObject);
     }
 }

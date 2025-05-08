@@ -55,12 +55,13 @@ public class DialogueManager : MonoBehaviour
 
     protected virtual void Start()
     {
-        doorBoards = GameObject.Find("DoorBoards");
+        
         HideDialogueUI();
     }
 
     private void ShowDialogueUI()
     {
+        doorBoards = GameObject.Find("DoorBoards");
         Debug.Log("Dialog UI Shown");
         characterBox.text = npcName;
         dialoguePanel.SetActive(true);

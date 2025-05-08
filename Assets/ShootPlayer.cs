@@ -28,7 +28,7 @@ public class ShootPlayer : MonoBehaviour
     {
         playerPos = player.transform.position;
         yield return new WaitForSeconds(1f);
-        Instantiate(projectile, playerPos, Quaternion.identity);
+        Instantiate(projectile, new Vector2(playerPos.x, playerPos.y + 5), Quaternion.identity);
         StartCoroutine(fire());
     }
 

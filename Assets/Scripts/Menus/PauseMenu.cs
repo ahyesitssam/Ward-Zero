@@ -14,12 +14,17 @@ public class PauseMenu : MonoBehaviour
 
     private GameManager GM;
 
+    private InventoryMenu IM;
+    public GameObject controls;
+    bool controlsOpen = false;
+
     void Start()
     {
         GM = GameObject.Find("GameManager").GetComponent<GameManager>(); //link to the GameManager script
         updatePosition();
         DontDestroyOnLoad(this.gameObject);
         Resume();
+        IM = GameObject.Find("Canvas").GetComponent<InventoryMenu>();
     }
 
     void Update()
@@ -45,6 +50,16 @@ public class PauseMenu : MonoBehaviour
             updatePosition();
         }
 
+        if (controlsOpen)
+        {
+            currentPosition = 0;
+            if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.Escape))
+            {
+                controls.SetActive(false);
+                controlsOpen = false;
+            }
+        }
+
         if (Input.GetKeyDown(KeyCode.Return) && gamePaused)// if enter is pressed do the thing the cursor is on
         {
             if (currentPosition == 0)
@@ -52,12 +67,14 @@ public class PauseMenu : MonoBehaviour
                 Resume();
             }else if (currentPosition == 1)
             {
-                //go to settings menu
+                controls.SetActive(true);
+                controlsOpen = true;
             }else if (currentPosition == 2)
             {
-                // go to main menu with scene change
-                //pop up "are you sure" first
-            }else if (currentPosition == 3)
+                IM.OpenMenu();
+                Resume();
+            }
+            else if (currentPosition == 3)
             {
                 Application.Quit();
             }

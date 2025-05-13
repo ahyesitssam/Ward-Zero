@@ -10,8 +10,12 @@ public class MainMenu : MonoBehaviour
     [SerializeField] public GameObject settings;
     [SerializeField] public GameObject quitGame;
     [SerializeField] public Sprite[] imageArray;
+
     [SerializeField] public GameObject canvas;
 
+    [SerializeField] public GameObject controlsA;
+
+    public bool controlsOpenA = false;
 
     private DialogueManager DM;
 
@@ -44,6 +48,16 @@ public class MainMenu : MonoBehaviour
                 currentState++;
             }
             checkIfInBounds();
+        }
+
+        if (controlsOpenA)
+        {
+            currentState = 2;
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.E))
+            {
+                controlsA.SetActive(false);
+                controlsOpenA = false;
+            }
         }
 
     }
@@ -103,7 +117,11 @@ public class MainMenu : MonoBehaviour
         }
         else if (currentState == 2)
         {
-            //settings menu stuff here
+            //Debug.Log("!");
+            controlsA.SetActive(true);
+            //Debug.Log(".");
+            controlsOpenA = true;
+            //Debug.Log("?");
         }
         else if (currentState == 3)
         {

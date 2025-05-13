@@ -61,6 +61,8 @@ public class InventoryMenu : MonoBehaviour
         return false;
     }
 
+
+
     public void remove(int item)
     {
         
@@ -166,7 +168,7 @@ public class InventoryMenu : MonoBehaviour
         UpdatePosition();
     }
 
-    void OpenMenu()
+    public void OpenMenu()
     {
         inventoryMenuUI.SetActive(true);
         Time.timeScale = 0f;
